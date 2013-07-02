@@ -1,5 +1,5 @@
 // setup some globals
-var DFP = DFP || {}, DFP_TARGETS = DFP_TARGETS || [], googletag = googletag || {};
+var DFP = DFP || {}, DFP_TARGETS = DFP_TARGETS || {}, googletag = googletag || {};
 
 // setup our array
 googletag.cmd = [];
