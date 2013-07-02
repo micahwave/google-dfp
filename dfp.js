@@ -13,34 +13,39 @@ DFP = {
 	// Takes an element and builds the add call from data attributes
 	getAd: function(id) {
 
-		var el, ad, sz, sizes = ad_sizes = [];
+		var el, ad, s, as = [];
 
 		// get the reference to the element
 		el = this.tags[id];
 
-		// build sizes
-		sz = el.getAttribute('data-sizes');
+		// get the sizes if it has it
+		if( el.hasAttribute('data-sizes') ) {
 
-		// break up comma seperated sizes, if it has more than one
-		if( sz.indexOf(',') >= 0 ) {
-			sizes = sz.split(',');
+			// build sizes
+			s = el.getAttribute('data-sizes');
+
+			// break up comma seperated sizes, if it has more than one
+			s = ( s.indexOf(',') >= 0 ) ? s.split(',') : [s];
+
+			// loop through the sizes
+			for( var i = 0, ln = s.length; i < ln; i++ ) {
+
+				// split each size by the x and make it an array
+				d = s[i].split('x');
+
+				// insert the new array into our ad sizes
+				as.push([parseInt(d[0]), parseInt(d[1])]);
+			}
+
+			// create the slot aka ad
+			ad = googletag.defineSlot(el.getAttribute('data-unit'), as, id).addService(googletag.pubads());
+
+		// assumed out of page slot
 		} else {
-			sizes.push(sz);
+
+			ad = googletag.defineOutOfPageSlot(el.getAttribute('data-unit'), id);
 		}
-
-		// loop through the sizes
-		for( var i = 0, ln = sizes.length; i < ln; i++ ) {
-
-			// split each size by the x and make it an array
-			d = sizes[i].split('x');
-
-			// insert the new array into our ad sizes
-			ad_sizes.push([parseInt(d[0]), parseInt(d[1])]);
-		}
-
-		// create the slot aka ad
-		ad = googletag.defineSlot(el.getAttribute('data-unit'), ad_sizes, id).addService(googletag.pubads());
-
+		
 		// loop thru global targets
 		for( var k in DFP_TARGETS ) {
 			ad.setTargeting(k, DFP_TARGETS[k]);
