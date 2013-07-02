@@ -12,9 +12,11 @@ Include the script near the closure of your `<body>` tag:
 
 Use HTML and data attributes to define your ad slots.
 
-	<div id='my-ad' data-unit='1234/my-ad' data-sizes='300x250,300x600' data-targets='{"key":"value"}'></div>
+	<div id='my-ad' class='dfp' data-unit='1234/my-ad' data-sizes='300x250,300x600' data-targets='{"key":"value"}'></div>
 
 Note the use of single quotes for the attributes. This is done so the json in the data-targets attribute can use double quotes.
+
+The class `dfp` is required
 
 The data-sizes attribute will accept a single size or multiple sizes seperated by commas.
 
