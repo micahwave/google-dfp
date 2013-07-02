@@ -22,7 +22,7 @@ The data-targets attribute may contain a json object of key/value pairs used for
 
 ### Additional Targeting
 
-If you use common targets across all your ads you do not need to define them in each ad's data-targets attribute. Instead, you can make use of a global named `DFP_TARETS`. Simply define the variable before you include the library to take advantage of this.
+If you use common targets across all your ads you do not need to define them in each ad's data-targets attribute. Instead, you can make use of a global named `DFP_TARGETS`. Simply define the variable before you include the library to take advantage of this.
 
 	<script>var DFP_TARGETS = {key: value};</script>
 	<script src="/path/to/dfp.min.js"></script>
